@@ -24,6 +24,6 @@ public class JwtAccessDeniedHandler implements AccessDeniedHandler {
             AccessDeniedException accessDeniedException
     ) throws IOException {
         jsonResponseWriter.write(response, HttpServletResponse.SC_FORBIDDEN, "Forbidden",
-                "Insufficient privileges");
+                "Access denied.");
     }
 }

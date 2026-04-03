@@ -36,6 +36,12 @@ class ApiSecurityIntegrationTest {
     }
 
     @Test
+    void unknownPathReturnsNotFoundNotUnauthorized() throws Exception {
+        mockMvc.perform(get("/api/no-such-resource/xyz"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     void userMeRequiresAuthentication() throws Exception {
         mockMvc.perform(get("/api/user/me"))
                 .andExpect(status().isUnauthorized());

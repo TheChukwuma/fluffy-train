@@ -44,6 +44,12 @@ The app listens on **port 8080** by default.
 | `alice` | `alice-secret` | `USER` |
 | `bob` | `bob-secret` | `USER`, `ADMIN` |
 
+### Users and database (simplified for this demo)
+
+For **simplicity**, demo users are **inserted at runtime** when the application starts (via a `CommandLineRunner`), so you can authenticate right away without building registration or admin UIs. The **sample application uses H2** (in-memory for the default setup). **Integration tests** also use H2 under the `test` profile so the suite stays self-contained and fast.
+
+In a **development** environment you might continue to use H2 for convenience. For **production** (or a serious staging environment), you would normally move to a **durable database** (for example PostgreSQL), schema migrations, and a **fuller user lifecycle**: self-service or admin-driven onboarding, password reset, audit trails, and compliance-friendly storage—rather than relying on fixed accounts created at startup.
+
 ## Example HTTP requests
 
 ### Login (obtain JWT)

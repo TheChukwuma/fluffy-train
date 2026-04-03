@@ -37,11 +37,13 @@ public class WebSecurityConfiguration {
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.addFilterAfter(authenticatedUserLoggingFilter, JwtAuthenticationFilter.class);
 
+        // Explicit matchers enforce auth; everything else reaches the dispatcher so unknown URLs return 404
+        // instead of 401 from anyRequest().authenticated().
         http.authorizeHttpRequests(auth -> auth
                 .requestMatchers(securityProperties.getPublicPathPatterns().toArray(String[]::new)).permitAll()
                 .requestMatchers(securityProperties.getAdminPathPatterns().toArray(String[]::new)).hasRole("ADMIN")
                 .requestMatchers(securityProperties.getUserPathPatterns().toArray(String[]::new)).authenticated()
-                .anyRequest().authenticated());
+                .anyRequest().permitAll());
 
         http.exceptionHandling(ex -> ex
                 .authenticationEntryPoint(authenticationEntryPoint)

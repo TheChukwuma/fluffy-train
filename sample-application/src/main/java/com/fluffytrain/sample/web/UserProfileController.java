@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/user")
 public class UserProfileController {
 
-    @RequestMapping(value = "/me", method = {RequestMethod.POST})
+    @RequestMapping(value = "/me", method = {RequestMethod.GET, RequestMethod.POST})
     public MeResponse me(@AuthenticationPrincipal JwtPrincipal principal) {
         List<String> roles = principal.getAuthorities().stream()
                 .map(a -> a.getAuthority().startsWith("ROLE_")
