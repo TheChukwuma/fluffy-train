@@ -137,6 +137,10 @@ mvn -pl sample-application spring-boot:run
 5. **Spring Boot 3.5.x on Java 21**  
    This matches current LTS usage and keeps APIs stable. Newer Spring Boot 4.x is available; migrating would mainly require verifying dependency and Jakarta baseline compatibility.
 
+## Postman
+
+Import **`postman/fluffy-train.postman_collection.json`** into Postman or Insomnia. The collection defines `baseUrl` (default `http://localhost:8080`) and `accessToken`. Run **Login (alice)** or **Login (bob)** first; the login requests’ **Tests** script saves the JWT into `accessToken` for the **User** and **Admin** folders.
+
 ## Tests
 
 Integration tests in `sample-application` use **MockMvc** and `@SpringBootTest` to cover login, public access, authenticated `/api/user/me`, and admin-only access. Run:
