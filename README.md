@@ -4,7 +4,7 @@ Multi-module Spring Boot project for a reusable **JWT security starter** (`core-
 
 ## Prerequisites
 
-- **Java 21** (or 24: set `<java.version>` in the root `pom.xml` and use a matching JDK).
+- **Java 21** (set `<java.version>` in the root `pom.xml` and use a matching JDK).
 - **Maven 3.9+**
 
 ## Stack
